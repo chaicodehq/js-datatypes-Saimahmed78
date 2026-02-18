@@ -40,4 +40,5 @@
  */
 export function parseWhatsAppMessage(message) {
   // Your code here
+  if(typeof message != "string" || message.includes("-"))
 }
