@@ -31,4 +31,6 @@
  */
 export function fixBollywoodTitle(title) {
   // Your code here
+  if(typeof title != "string" || title.length==0) return ""
+  return title.trim()
 }

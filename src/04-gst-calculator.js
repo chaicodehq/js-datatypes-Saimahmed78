@@ -1,8 +1,7 @@
 /**
  * 🧾 GST Calculator - Tax Lagao Bhai!
  *
- * Bunty apni dukaan ke liye GST calculator bana raha hai. Customer ko bill
- * dena hai jisme base price, GST amount, aur total clearly dikhna chahiye.
+ * Bunty apni dukaan ke liye GST calculator bana raha hai. Customer ko bill dena hai jisme base price, GST amount, aur total clearly dikhna chahiye.
  * GST rate category ke hisaab se change hota hai.
  *
  * GST Rates (by category string, case-insensitive):
@@ -40,4 +39,19 @@
  */
 export function calculateGST(amount, category) {
   // Your code here
+  let gst = [
+    { essential: 0 },
+    { food: 5 },
+    { standard: 12 },
+    { electronics: 18 },
+    { luxury: 28 },
+  ];
+  let knownCategories = ["essential", "food", "standard", "luxury"];
+  if (
+    !Number.isFinite(amount) ||
+    typeof category != "string" ||
+    !knownCategories.includes(category)
+  )
+    return "";
+  let gstRate= amount*gst.c
 }

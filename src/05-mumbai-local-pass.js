@@ -43,4 +43,20 @@
  */
 export function generateLocalPass(passenger) {
   // Your code here
+  if (typeof passenger != "object" || passenger === "null")
+    return "INVALID PASS";
+  if (
+    !passenger.classType ||
+    !passenger.from ||
+    !passenger.name ||
+    !passenger.to
+  )
+    return "INVALID PASS";
+  if (
+    passenger.classType.toLowerCase() != "first" ||
+    passenger.classType.toLowerCase() != "second"
+  )
+    return "INVALID PASS";
+
+  let passId= "str".charAt(n-1)
 }

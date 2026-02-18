@@ -29,4 +29,14 @@
  */
 export function maskAadhaar(aadhaarNumber) {
   // Your code here
+  let regex=/^\d+$/
+  if(typeof aadhaarNumber != "string" || ((aadhaarNumber.length!=12) || !(regex.test(aadhaarNumber)))) return "INVALID"
+
+  return `XXXX-XXXX-${aadhaarNumber.slice(aadhaarNumber.length-4,aadhaarNumber.length)}`
+  
 }
+
+console.log(maskAadhaar("123456781234"))
+let aadhaarNumber="123456789123"
+console.log(aadhaarNumber.slice(aadhaarNumber.length-4,aadhaarNumber.length))
+
