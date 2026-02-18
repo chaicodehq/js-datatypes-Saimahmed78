@@ -43,8 +43,9 @@
  */
 export function generateLocalPass(passenger) {
   // Your code here
-  if (typeof passenger != "object" || passenger === "null")
+  if (typeof passenger != "object" || passenger === null)
     return "INVALID PASS";
+  console.log("Pass1")
   if (
     !passenger.classType ||
     !passenger.from ||
@@ -52,20 +53,21 @@ export function generateLocalPass(passenger) {
     !passenger.to
   )
     return "INVALID PASS";
+  console.log("Pass2")
+
   if (
-    passenger.classType.toLowerCase() != "first" ||
+    passenger.classType.toLowerCase() != "first" &&
     passenger.classType.toLowerCase() != "second"
   )
     return "INVALID PASS";
-  let passID=passenger.classType.charAt[0].toUpperCase()+
+    console.log("Pass 3")
+  let passID=passenger.classType.charAt(0).toUpperCase()+
   passenger.from.slice(0,3).toUpperCase()+
   passenger.to.slice(0,3).toUpperCase()
-
-  return `MUMBAI LOCAL PASS\n---\nName: ${passenger.name.toUpperCase()}\nFrom: ${passenger.from.toUpperCase()}\nTo: ${passenger.to.toUpperCase()}\nPass ID: ${passID}`
+  console.log("PassId",passID)
+  let string=`MUMBAI LOCAL PASS\n---\nName: ${passenger.name.toUpperCase()}\nFrom: ${passenger.from.toLowerCase().replace(/\b\w/g, s => s.toUpperCase())}\nTo: ${passenger.to.toLowerCase().replace(/\b\w/g, s => s.toUpperCase())}\nClass: ${passenger.classType.toUpperCase()}\nPass ID: ${passID}`
+  return string
 }
-console.log("string".charAt(0))
-console.log("a")
-let passenger={ name: "rahul sharma", from: "dadar", to: "andheri", classType: "first" }
-console.log(passenger.classType.charAt(0).toUpperCase()+
-  passenger.from.slice(0,3).toUpperCase()+
-  passenger.to.slice(0,3).toUpperCase())
+
+console.log(generateLocalPass({ name: "rahul sharma", from: "dadar", to: "andheri", classType: "SECOND" }))
+console.log("saim".toWellFormed())

@@ -39,7 +39,15 @@
  *
  *   generateReportCard({ name: "Priya", marks: { maths: 35, science: 28 } })
  *   // => { name: "Priya", totalMarks: 63, percentage: 31.5, grade: "F", ... }
- */
+ */null
 export function generateReportCard(student) {
   // Your code here
+  if(typeof student != 'object'|| student === null) return null
+  if(typeof student.name != "string" || student.name.length==0) return null
+  if(typeof student.marks != "object" || student.marks === null) return null
+  if(student.marks<0 || student.marks>100) return null
+
+  let totalMarks= student.reduce()
+
+
 }
