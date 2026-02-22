@@ -45,4 +45,65 @@
  */
 export function iplAuctionSummary(team, players) {
   // Your code here
+  if (
+    !team ||
+    typeof team != "object" ||
+    team.purse < 0 ||
+    // team.purse === null ||
+    team.purse === undefined
+
+
+  )
+    return null;
+  
+  if (!Array.isArray(players) || players.length == 0) return null;
+  let totalSpent = players.reduce((acc, el) => acc + el.price, 0);
+  let remaining = team.purse - totalSpent;
+  let playerCount = Object.entries(players).length;
+  let sortedPlayerArrays = players.sort((a, b) => a.price - b.price);
+  let costliestPlayer = sortedPlayerArrays[sortedPlayerArrays.length - 1];
+  let cheapestPlayer = sortedPlayerArrays[0];
+  let averagePrice = Math.round(totalSpent / playerCount);
+  let wk = players.reduce(
+    (acc, curr) => (curr.role == "wk" ? acc + 1 : acc),
+    0,
+  );
+  let bat = players.reduce(
+    (acc, curr) => (curr.role == "bat" ? acc + 1 : acc),
+    0,
+  );
+  let bowl = players.reduce(
+    (acc, curr) => (curr.role == "bowl" ? acc + 1 : acc),
+    0,
+  );
+  let ar = players.reduce(
+    (acc, curr) => (curr.role == "ar" ? acc + 1 : acc),
+    0,
+  );
+  let  byRole = { bat:bat, bowl:bowl, ar:ar, wk:wk };
+  byRole=Object.fromEntries(Object.entries(byRole).filter(el=>el[1]>0))
+  let isOverBudget = totalSpent > team.purse;
+
+  return {
+    teamName: team.name,
+    totalSpent,
+    remaining,
+    playerCount,
+    costliestPlayer,
+    cheapestPlayer,
+    averagePrice,
+    byRole,
+    isOverBudget,
+  };
+  console.log("wk", wk);
+  // console.log(Object.entries(players).)
+  console.log(totalSpent);
 }
+console.log(
+  iplAuctionSummary({ name: "CSK", purse: 9000 }, [
+    { name: "Dhoni", role: "wk", price: 1200 },
+    { name: "Jadeja", role: "wk", price: 1600 },
+    { name: "Jadeja", role: "ar", price: 12600 },
+    { name: "Jadeja", role: "ar", price: 16010 },
+  ]),
+);
